@@ -149,6 +149,24 @@ class cbCommission extends CRMEntity {
 	}
 
 	function save_module($module) {
+		global $log, $adb;
+		$se = getSalesEntityType($this->column_fields['soinvid']);
+		if ($se == 'Invoice') {
+			$table = 'vtiger_invoice';
+			$fldid = 'invoiceid';
+		} else {
+			$table = 'vtiger_salesorder';
+			$fldid = 'salesorderid';
+		}
+		$total = $adb->query_result($adb->pquery("select total from $table where $fldid=?",array($this->column_fields['soinvid'])),0,0);
+		$adb->pquery("update vtiger_cbcommission set soinvtotal = ? where cbcommissionid=?",array($total,$this->id));
+		if (!empty($this->column_fields['percentage'])) {
+			$adb->pquery("update vtiger_cbcommission set commission = ? where cbcommissionid=?",
+				array($total*$this->column_fields['percentage']/100,$this->id));
+		} elseif (!empty($this->column_fields['amount'])) {
+			$adb->pquery("update vtiger_cbcommission set commission = ? where cbcommissionid=?",
+				array($this->column_fields['amount'],$this->id));
+		}
 	}
 
 	/**
