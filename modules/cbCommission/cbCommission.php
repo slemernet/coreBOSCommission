@@ -121,7 +121,7 @@ class cbCommission extends CRMEntity {
 	public $mandatory_fields = array('createdtime', 'modifiedtime');
 
 	public function save_module($module) {
-		global $log, $adb;
+		global $adb;
 		$se = getSalesEntityType($this->column_fields['soinvid']);
 		if ($se == 'Invoice') {
 			$table = 'vtiger_invoice';
@@ -130,7 +130,7 @@ class cbCommission extends CRMEntity {
 			$table = 'vtiger_salesorder';
 			$fldid = 'salesorderid';
 		}
-		$adb->pquery("select total from $table where $fldid=?", array($this->column_fields['soinvid']));
+		$rs = $adb->pquery("select total from $table where $fldid=?", array($this->column_fields['soinvid']));
 		$total = $adb->query_result($rs, 0, 0);
 		$adb->pquery('update vtiger_cbcommission set soinvtotal=? where cbcommissionid=?', array($total, $this->id));
 		if (!empty($this->column_fields['percentage'])) {
@@ -160,13 +160,13 @@ class cbCommission extends CRMEntity {
 			$modEmp=Vtiger_Module::getInstance('cbEmployee');
 			$modCom=Vtiger_Module::getInstance('cbCommission');
 			if ($modEmp) {
-				$modEmp->setRelatedList($modCom, 'cbCommission', array('ADD'),'get_dependents_list');
+				$modEmp->setRelatedList($modCom, 'cbCommission', array('ADD'), 'get_dependents_list');
 			}
 			if ($modInvoice) {
-				$modInvoice->setRelatedList($modCom, 'cbCommission', array('ADD'),'get_dependents_list');
+				$modInvoice->setRelatedList($modCom, 'cbCommission', array('ADD'), 'get_dependents_list');
 			}
 			if ($modSO) {
-				$modSO->setRelatedList($modCom, 'cbCommission', array('ADD'),'get_dependents_list');
+				$modSO->setRelatedList($modCom, 'cbCommission', array('ADD'), 'get_dependents_list');
 			}
 		} elseif ($event_type == 'module.disabled') {
 			// TODO Handle actions when this module is disabled.
