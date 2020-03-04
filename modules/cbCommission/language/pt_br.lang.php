@@ -8,16 +8,21 @@
  * All Rights Reserved.
  ************************************************************************************/
 
-$mod_strings = Array(
-	'ModuleName' => 'Nome Módulo',
-	'SINGLE_ModuleName' => 'Nome Módulo',
-	'ModuleName ID' => 'ID Nome Módulo',
+$mod_strings = array(
+	'cbCommission' => 'Comissões',
+	'SINGLE_cbCommission' => 'Comissão',
+	'cbCommission ID' => 'ID Comissão',
 
-	'LBL_CUSTOM_INFORMATION' => 'Imformação Customizada',
-	'LBL_MODULEBLOCK_INFORMATION' => 'Informação Bloco Módulo',
+	'LBL_CUSTOM_INFORMATION' => 'Informação customizada',
+	'LBL_CBCOMMISSION_INFORMATION' => 'Informação comissão',
 	'LBL_DESCRIPTION_INFORMATION' => 'Descrição',
 
-	'ModuleFieldLabel' => 'Texto Etiqueta Campo Módulo',
+	'cbcommissionno' => 'Nr. comissão',
+	'percentage' => 'Percentual',
+	'amount' => 'Valor',
+	'soinvtotal' => 'Valor documento',
+	'commission' => 'Comissão',
+	'employeeid' => 'Empregado',
+	'soinvid' => 'Documento origem',
 );
-
 ?>

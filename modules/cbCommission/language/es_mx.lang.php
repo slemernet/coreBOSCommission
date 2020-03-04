@@ -8,7 +8,7 @@
  * All Rights Reserved.
  ************************************************************************************/
 
-$mod_strings = Array(
+$mod_strings = array(
 	'cbCommission' => 'Comisión',
 	'SINGLE_cbCommission' => 'Comisión',
 	'cbCommission ID' => 'ID Comisión',
@@ -24,7 +24,5 @@ $mod_strings = Array(
 	'commission' => 'Comisión',
 	'employeeid' => 'Empleado',
 	'soinvid' => 'Documento',
-
 );
-
 ?>
